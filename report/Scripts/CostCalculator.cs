@@ -8,6 +8,10 @@
  или цена = тариф_ночь * мощность_ночь (квт.ч) + тариф_пик * мощность_пик (квт.ч) + тариф_полупик * мощность_полупик (квт.ч)
  
  3 цк: цена = (тариф_час1 * электричество_час1 (квт.ч) + ...) + (эл_в_отчётный_час_день1 (квт.ч) + ...) / колво_дней * цена_мощности
+ или добавляем тариф_по_передаче * колво_электричества
+ 
+ 4 цк: цена = (тариф_час1 * электричество_час1 (квт.ч) + ...) + (эл_в_отчётный_час_день1 (квт.ч) + ...) / колво_дней * цена_мощности
+ или добавляем тариф_по_передаче * колво_электричества
 */
 
 public static class CostCalculator
@@ -162,6 +166,50 @@ public static class CostCalculator
                     cost[day, hour] = power[day, hour] * threeZoneTariff.Item2;
                 else
                     cost[day, hour] = power[day, hour] * threeZoneTariff.Item3;
+            }
+        }
+
+        return cost;
+    }
+    
+    
+    
+    /// <summary>
+    /// расчёт общей стоимости по третьей ценовой категории
+    /// </summary>
+    /// <param name="energy">общая потреблённая мощность</param>
+    /// <param name="energyTariff">стоимость энергии за квт.ч</param>
+    /// <param name="power">мощность в отчётный час</param>
+    /// <param name="powerTariff">стоимость мощности</param>
+    /// <param name="transmissionTariff">стоимость услуг передачи. по умолчанию 0 для контракта купли-продажи</param>
+    /// <returns></returns>
+    public static double PriceCategory3(double energy, double energyTariff, double power, double powerTariff, double transmissionTariff = 0)
+    {
+        return energy * energyTariff + power * powerTariff + transmissionTariff * energy;
+    }
+
+    // 3 цк: цена = (тариф_час1 * электричество_час1 (квт.ч) + ...) + (эл_в_отчётный_час_день1 (квт.ч) + ...) / колво_дней * цена_мощности
+    // или добавляем тариф_по_передаче * колво_электричества
+    public static double[,] PriceCategory3(double[,] energy, double[,] energyTariff, 
+        int[] powerHours, double[] powerTariff, double[,]? transmissionTariff = null)
+    {
+        double[,] cost = new double[energy.GetLength(0), energy.GetLength(1)];
+        double powerCost = 0, averagePowerTariff = 0;
+        
+        for (int day = 0; day < cost.GetLength(0); day++)
+        {
+            powerCost += energy[day, powerHours[day]];
+            averagePowerTariff += powerTariff[day];
+        }
+
+        powerCost = powerCost / (powerHours.Length * powerHours.Length) * (averagePowerTariff / powerTariff.Length);
+
+        for (int day = 0; day < cost.GetLength(0); day++)
+        {
+            for (int hour = 0; hour < cost.GetLength(1); hour++)
+            {
+                cost[day, hour] = energy[day, hour] * energyTariff[day, hour] + powerCost + 
+                                  (transmissionTariff == null ? 0 : transmissionTariff[day, hour] * energy[day, hour]);
             }
         }
 
