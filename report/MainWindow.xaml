@@ -4,9 +4,91 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:report"
+        xmlns:lcw="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="800" Width="1300">
     <Grid>
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <DataGrid
+            x:Name="PriceCategory"
+            Grid.Row="0"
+            Width="400"
+            Margin="10 15 10 10"
+            Style="{StaticResource DataGridStyle1}"
+            CellStyle="{StaticResource DataGridCellStyle1}"
+            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle1}"
+            RowStyle="{StaticResource DataGridRowStyle1}"
+            VerticalScrollBarVisibility="Hidden"
+            HorizontalScrollBarVisibility="Hidden"
+            HorizontalAlignment="Left">
+            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ценовая категория" IsReadOnly="True" CanUserResize="False"
+                                    Width="auto"
+                                    Binding="{Binding PriceCategory}" />
+                    
+                <DataGridTextColumn Header="Стоимость" IsReadOnly="True" CanUserResize="False"
+                                    Width="auto"
+                                    Binding="{Binding Price}" />
+                
+                <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="False"
+                                    Width="auto" Foreground="Blue"
+                                    Binding="{Binding Tag}" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
+        
+        <Grid Grid.Row="1">
+            
+            <TextBlock
+                Text="Статистика потребления электроэнергии"
+                Foreground="Black"
+                FontSize="15"
+                FontFamily="Montserrat"
+                FontWeight="Bold"
+                Margin="10 10">
+            </TextBlock>
+        
+            <Border VerticalAlignment="Stretch" Margin="0 35 0 0">
+                <lcw:CartesianChart LegendLocation="None" Margin="0">
+                    <lcw:CartesianChart.DataTooltip>
+                        <lcw:DefaultTooltip Background="Black" Foreground="Green"></lcw:DefaultTooltip>
+                    </lcw:CartesianChart.DataTooltip>
+            
+                    <lcw:CartesianChart.AxisX>
+                        <lcw:Axis Foreground="Black" ShowLabels="True" Labels="01.05.2025,02.05.2025,03.05.2025,04.05.2025,05.05.2025,06.05.2025,07.05.2025,08.05.2025,09.05.2025,10.05.2025,11.05.2025">
+                            <lcw:Axis.Separator>
+                                <lcw:Separator StrokeThickness="0"></lcw:Separator>
+                            </lcw:Axis.Separator>
+                        </lcw:Axis>
+                    </lcw:CartesianChart.AxisX>
+            
+                    <lcw:CartesianChart.AxisY>
+                        <lcw:Axis Foreground="Black" ShowLabels="True" MinValue="0" MaxValue="24">
+                            <lcw:Axis.Separator>
+                                <lcw:Separator StrokeThickness="1" />
+                            </lcw:Axis.Separator>
+                        </lcw:Axis>
+                    </lcw:CartesianChart.AxisY>
+            
+                    <lcw:CartesianChart.Series>
+                        <lcw:LineSeries StrokeThickness="3" Stroke="#161644" PointGeometrySize="0" Values="1,5,2,12,13,2,5,1">
+                            <lcw:LineSeries.Fill>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <GradientStop Color="#2E3092" Offset="1.0" ></GradientStop>
+                                    <GradientStop Color="#0E0E2C85" Offset="0.0"></GradientStop>
+                                </LinearGradientBrush>
+                            </lcw:LineSeries.Fill>
+                        </lcw:LineSeries>
+                    </lcw:CartesianChart.Series>
+                </lcw:CartesianChart>
+            </Border>
+            
+        </Grid>
     </Grid>
 </Window>
