@@ -6,6 +6,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>Images\TNS_sign.ico</ApplicationIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +15,12 @@
 
     <ItemGroup>
         <PackageReference Include="MahApps.Metro.IconPacks" Version="5.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="test.xlsx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>
