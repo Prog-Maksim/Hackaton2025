@@ -16,4 +16,10 @@
         <PackageReference Include="MahApps.Metro.IconPacks" Version="5.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+        <None Update="test.xlsx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
 </Project>

@@ -61,7 +61,7 @@
                     </lcw:CartesianChart.DataTooltip>
             
                     <lcw:CartesianChart.AxisX>
-                        <lcw:Axis Foreground="Black" ShowLabels="True" Labels="01.05.2025,02.05.2025,03.05.2025,04.05.2025,05.05.2025,06.05.2025,07.05.2025,08.05.2025,09.05.2025,10.05.2025,11.05.2025">
+                        <lcw:Axis x:Name="AxisX" Foreground="Black" ShowLabels="True">
                             <lcw:Axis.Separator>
                                 <lcw:Separator StrokeThickness="0"></lcw:Separator>
                             </lcw:Axis.Separator>
@@ -69,7 +69,7 @@
                     </lcw:CartesianChart.AxisX>
             
                     <lcw:CartesianChart.AxisY>
-                        <lcw:Axis Foreground="Black" ShowLabels="True" MinValue="0" MaxValue="24">
+                        <lcw:Axis Foreground="Black" ShowLabels="True" MinValue="0">
                             <lcw:Axis.Separator>
                                 <lcw:Separator StrokeThickness="1" />
                             </lcw:Axis.Separator>
@@ -77,7 +77,7 @@
                     </lcw:CartesianChart.AxisY>
             
                     <lcw:CartesianChart.Series>
-                        <lcw:LineSeries StrokeThickness="3" Stroke="#161644" PointGeometrySize="0" Values="1,5,2,12,13,2,5,1">
+                        <lcw:LineSeries x:Name="SeriesData" StrokeThickness="3" Stroke="#161644" PointGeometrySize="0" Values="1,5,2,12,13,2,5,1">
                             <lcw:LineSeries.Fill>
                                 <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
                                     <GradientStop Color="#2E3092" Offset="1.0" ></GradientStop>
