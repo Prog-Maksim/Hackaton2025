@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="report.Graphics.plot"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:report.Graphics"
+             mc:Ignorable="d"
+             xmlns:lcw="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <lcw:CartesianChart
+        LegendLocation="None"
+        Margin="0"
+        VerticalAlignment="Bottom"
+        Height="500">
+        <lcw:CartesianChart.DataTooltip>
+            <lcw:DefaultTooltip Background="Black" Foreground="White"></lcw:DefaultTooltip>
+        </lcw:CartesianChart.DataTooltip>
+
+        <lcw:CartesianChart.AxisX>
+            <lcw:Axis x:Name="AxisX" Foreground="Black" FontWeight="Bold" ShowLabels="True">
+                <lcw:Axis.Separator>
+                    <lcw:Separator StrokeThickness="0"></lcw:Separator>
+                </lcw:Axis.Separator>
+            </lcw:Axis>
+        </lcw:CartesianChart.AxisX>
+
+        <lcw:CartesianChart.AxisY>
+            <lcw:Axis Foreground="Black" FontWeight="Bold" ShowLabels="True" MinValue="0">
+                <lcw:Axis.Separator>
+                    <lcw:Separator StrokeThickness="1" />
+                </lcw:Axis.Separator>
+            </lcw:Axis>
+        </lcw:CartesianChart.AxisY>
+
+        <lcw:CartesianChart.Series>
+            <lcw:LineSeries x:Name="SeriesData" StrokeThickness="3" Stroke="#161644" PointGeometrySize="0"
+                            Values="1,5,2,12,13,2,5,1">
+                <lcw:LineSeries.Fill>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <GradientStop Color="#2E3092" Offset="1.0"></GradientStop>
+                        <GradientStop Color="#0E0E2C85" Offset="0.0"></GradientStop>
+                    </LinearGradientBrush>
+                </lcw:LineSeries.Fill>
+            </lcw:LineSeries>
+        </lcw:CartesianChart.Series>
+    </lcw:CartesianChart>
+</UserControl>

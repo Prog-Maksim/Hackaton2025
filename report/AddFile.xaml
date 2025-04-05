@@ -5,8 +5,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:report"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Title="AddFile" Height="700" Width="600">
+        Title="Конфигурация" 
+        Height="700" Width="600">
     <Grid Margin="10 0">
 
         <Grid.RowDefinitions>
@@ -45,7 +47,7 @@
             Click="AddFileConfig_OnClick"
             Style="{StaticResource ClickButtonStyle}">
             <Button.ToolTip>
-                Файл с отчетностью по стоимости энергии на рынке
+                <TextBlock>Файл с отчетностью по стоимости энергии на рынке</TextBlock>
             </Button.ToolTip>
         </Button>
 
@@ -134,7 +136,6 @@
                         <ComboBox
                             x:Name="ChangeMode"
                             SelectedIndex="0"
-                            Selected="ChangeMode_OnSelected"
                             Style="{StaticResource ComboBoxStyle1}"
                             HorizontalAlignment="Left">
                             <TextBlock>День/Ночь</TextBlock>
@@ -704,7 +705,7 @@
         <Button
             Grid.Row="4"
             Content="Произвести рассчет"
-            Height="40"
+            Height="45"
             Style="{StaticResource ClickButtonStyle}"
             Click="ButtonBase_OnClick"
             Margin="0 10">

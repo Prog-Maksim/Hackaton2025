@@ -5,18 +5,37 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:report"
         xmlns:lcw="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:graf="clr-namespace:report.Graphics"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="800" Width="1300">
+        Title="ТНС энерго Ростов-на-Дону" Height="800" Width="1300">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        
+        <Button
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Left"
+            Margin="10 0"
+            Background="Transparent"
+            Foreground="Black"
+            Style="{StaticResource ClickButtonStyle}"
+            Click="ButtonBase_OnClick">
+            <iconPacks:PackIconEvaIcons 
+                Kind="ArrowBack"
+                Height="20" Width="20">
+                <iconPacks:PackIconEvaIcons.ToolTip>Назад</iconPacks:PackIconEvaIcons.ToolTip>
+            </iconPacks:PackIconEvaIcons>
+        </Button>
         
         <DataGrid
             x:Name="PriceCategory"
-            Grid.Row="0"
+            Grid.Row="1"
             Width="400"
             Margin="10 15 10 10"
             Style="{StaticResource DataGridStyle1}"
@@ -43,7 +62,7 @@
             
         </DataGrid>
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             
             <TextBlock
                 Text="Статистика потребления электроэнергии"
@@ -53,40 +72,23 @@
                 FontWeight="Bold"
                 Margin="10 10">
             </TextBlock>
+            
+            <ComboBox 
+                x:Name="ComboBoxMain"
+                Style="{StaticResource ComboBoxStyle1}"
+                SelectedIndex="0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="10 0"
+                SelectionChanged="Selector_OnSelectionChanged">
+                <TextBlock>Потребление ЭЭ</TextBlock>
+                <TextBlock>Стоимость</TextBlock>
+            </ComboBox>
         
-            <Border VerticalAlignment="Stretch" Margin="0 35 0 0">
-                <lcw:CartesianChart LegendLocation="None" Margin="0">
-                    <lcw:CartesianChart.DataTooltip>
-                        <lcw:DefaultTooltip Background="Black" Foreground="Green"></lcw:DefaultTooltip>
-                    </lcw:CartesianChart.DataTooltip>
-            
-                    <lcw:CartesianChart.AxisX>
-                        <lcw:Axis x:Name="AxisX" Foreground="Black" ShowLabels="True">
-                            <lcw:Axis.Separator>
-                                <lcw:Separator StrokeThickness="0"></lcw:Separator>
-                            </lcw:Axis.Separator>
-                        </lcw:Axis>
-                    </lcw:CartesianChart.AxisX>
-            
-                    <lcw:CartesianChart.AxisY>
-                        <lcw:Axis Foreground="Black" ShowLabels="True" MinValue="0">
-                            <lcw:Axis.Separator>
-                                <lcw:Separator StrokeThickness="1" />
-                            </lcw:Axis.Separator>
-                        </lcw:Axis>
-                    </lcw:CartesianChart.AxisY>
-            
-                    <lcw:CartesianChart.Series>
-                        <lcw:LineSeries x:Name="SeriesData" StrokeThickness="3" Stroke="#161644" PointGeometrySize="0" Values="1,5,2,12,13,2,5,1">
-                            <lcw:LineSeries.Fill>
-                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                                    <GradientStop Color="#2E3092" Offset="1.0" ></GradientStop>
-                                    <GradientStop Color="#0E0E2C85" Offset="0.0"></GradientStop>
-                                </LinearGradientBrush>
-                            </lcw:LineSeries.Fill>
-                        </lcw:LineSeries>
-                    </lcw:CartesianChart.Series>
-                </lcw:CartesianChart>
+            <Border VerticalAlignment="Stretch" Margin="10 35 0 10">
+                
+                <graf:plot x:Name="Plot1"></graf:plot>
+                
             </Border>
             
         </Grid>

@@ -17,7 +17,7 @@ public static class GetDataRequest
             Stopwatch start = Stopwatch.StartNew();
             start.Start();
             
-            var url = "http://localhost:8080/";
+            var url = "http://localhost:8000/";
 
             using (var client = new HttpClient())
             using (var form = new MultipartFormDataContent())

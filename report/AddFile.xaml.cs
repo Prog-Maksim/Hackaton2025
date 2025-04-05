@@ -18,32 +18,43 @@ public partial class AddFile : Window
     {
         if (fileNameEnergy != null)
             _ = Start(fileNameEnergy);
-        else
+        else if (fileNameEnergy == null)
         {
-            var result = OpenDialogMenu("Выберите файл с потреблением энергии");
-            if (result != null)
-                _ = Start(result);
-            else
-                MessageBox.Show("Требуется указать путь к файлу", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show("Необходимо выбрать файл с почасовым потреблением энергии", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            fileNameEnergy = OpenDialogMenu("Выберите файл с потреблением энергии");
         }
-
+        else if (fileNameConfigure == null)
+        {
+            MessageBox.Show("Необходимо выбрать конфигурационный файл", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
+            fileNameConfigure = OpenDialogMenu("Выберите файл конфигурации");
+        }
+        else
+            _ = Start(fileNameConfigure);
     }
 
     private async Task Start(string filePath)
     {
-        var result = await GetDataRequest.GetDataRequestMethod(filePath);
+        try
+        {
+            var result = await GetDataRequest.GetDataRequestMethod(filePath);
 
-        double powerCost = 0;
-        double.TryParse(TextBox1.Text, out powerCost);
+            double powerCost = 0;
+            double.TryParse(TextBox1.Text, out powerCost);
 
-        double energyCost1 = 0, energyCost2 = 0, energyCost3 = 0;
+            double energyCost1 = 0, energyCost2 = 0, energyCost3 = 0;
         
-        double.TryParse(TextBox2.Text, out powerCost);
-        double.TryParse(TextBox3.Text, out powerCost);
-        double.TryParse(TextBox4.Text, out powerCost);
+            double.TryParse(TextBox2.Text, out powerCost);
+            double.TryParse(TextBox3.Text, out powerCost);
+            double.TryParse(TextBox4.Text, out powerCost);
         
-        MainWindow mainWindow = new MainWindow(result, powerCost, (energyCost1, energyCost2, energyCost3));
-        mainWindow.Show();
+            MainWindow mainWindow = new MainWindow(result, powerCost, (energyCost1, energyCost2, energyCost3));
+            mainWindow.Show();
+            Close();
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.Message + "\n\n" + e.StackTrace);
+        }
     }
 
     private void AddFileEnergy_OnClick(object sender, RoutedEventArgs e)
@@ -69,18 +80,5 @@ public partial class AddFile : Window
     private void AddFileConfig_OnClick(object sender, RoutedEventArgs e)
     {
         fileNameConfigure = OpenDialogMenu("Выберите файл конфигурации");
-    }
-
-    private void ChangeMode_OnSelected(object sender, RoutedEventArgs e)
-    {
-        if (ChangeMode.SelectedIndex == 0)
-        {
-            TextBlock1.Visibility = Visibility.Collapsed;
-            TextBox1_1.Visibility = Visibility.Collapsed;
-        }
-        else if (ChangeMode.SelectedIndex == 1)
-        {
-            
-        }
     }
 }
