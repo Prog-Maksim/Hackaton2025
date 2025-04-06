@@ -23,4 +23,9 @@
         </None>
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Images\TNS_logo.png" />
+      <Resource Include="Images\TNS_logo.png" />
+    </ItemGroup>
+
 </Project>

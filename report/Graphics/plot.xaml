@@ -6,42 +6,190 @@
              xmlns:local="clr-namespace:report.Graphics"
              mc:Ignorable="d"
              xmlns:lcw="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <lcw:CartesianChart
-        LegendLocation="None"
-        Margin="0"
-        VerticalAlignment="Bottom"
-        Height="500">
-        <lcw:CartesianChart.DataTooltip>
-            <lcw:DefaultTooltip Background="Black" Foreground="White"></lcw:DefaultTooltip>
-        </lcw:CartesianChart.DataTooltip>
+             d:DesignHeight="500" d:DesignWidth="1000">
 
-        <lcw:CartesianChart.AxisX>
-            <lcw:Axis x:Name="AxisX" Foreground="Black" FontWeight="Bold" ShowLabels="True">
-                <lcw:Axis.Separator>
-                    <lcw:Separator StrokeThickness="0"></lcw:Separator>
-                </lcw:Axis.Separator>
-            </lcw:Axis>
-        </lcw:CartesianChart.AxisX>
+    <Grid>
+        <Border Margin="0 0 0 25">
+            <lcw:CartesianChart
+            LegendLocation="None"
+            Margin="0"
+            VerticalAlignment="Bottom"
+            Height="500">
+            <lcw:CartesianChart.DataTooltip>
+                <lcw:DefaultTooltip Background="Black" Foreground="White"></lcw:DefaultTooltip>
+            </lcw:CartesianChart.DataTooltip>
 
-        <lcw:CartesianChart.AxisY>
-            <lcw:Axis Foreground="Black" FontWeight="Bold" ShowLabels="True" MinValue="0">
-                <lcw:Axis.Separator>
-                    <lcw:Separator StrokeThickness="1" />
-                </lcw:Axis.Separator>
-            </lcw:Axis>
-        </lcw:CartesianChart.AxisY>
+            <lcw:CartesianChart.AxisX>
+                <lcw:Axis x:Name="AxisX" Foreground="Black" FontWeight="Bold" ShowLabels="True">
+                    <lcw:Axis.Separator>
+                        <lcw:Separator StrokeThickness="0"></lcw:Separator>
+                    </lcw:Axis.Separator>
+                </lcw:Axis>
+            </lcw:CartesianChart.AxisX>
 
-        <lcw:CartesianChart.Series>
-            <lcw:LineSeries x:Name="SeriesData" StrokeThickness="3" Stroke="#161644" PointGeometrySize="0"
-                            Values="1,5,2,12,13,2,5,1">
-                <lcw:LineSeries.Fill>
-                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                        <GradientStop Color="#2E3092" Offset="1.0"></GradientStop>
-                        <GradientStop Color="#0E0E2C85" Offset="0.0"></GradientStop>
-                    </LinearGradientBrush>
-                </lcw:LineSeries.Fill>
-            </lcw:LineSeries>
-        </lcw:CartesianChart.Series>
-    </lcw:CartesianChart>
+            <lcw:CartesianChart.AxisY>
+                <lcw:Axis Foreground="Black" FontWeight="Bold" ShowLabels="True" MinValue="0">
+                    <lcw:Axis.Separator>
+                        <lcw:Separator StrokeThickness="1" />
+                    </lcw:Axis.Separator>
+                </lcw:Axis>
+            </lcw:CartesianChart.AxisY>
+
+            <lcw:CartesianChart.Series>
+
+                <lcw:LineSeries x:Name="SeriesData1" Title="Ценовая категория 1" StrokeThickness="3" Stroke="#161644" PointGeometrySize="0"
+                                Values="1,5,2,12,13,2,5,1">
+                    <lcw:LineSeries.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                            <GradientStop Color="#2E3092" Offset="1.0"></GradientStop>
+                            <GradientStop Color="#0E0E2C85" Offset="0.0"></GradientStop>
+                        </LinearGradientBrush>
+                    </lcw:LineSeries.Fill>
+                </lcw:LineSeries>
+
+                <lcw:LineSeries x:Name="SeriesData2" Title="Ценовая категория 2" StrokeThickness="3" Stroke="Red" PointGeometrySize="0"
+                                 Values="10,50,1,70,11,90,6,2">
+                    <lcw:LineSeries.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                            <GradientStop Color="#f72585" Offset="1.0" />
+                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                        </LinearGradientBrush>
+                    </lcw:LineSeries.Fill>
+                </lcw:LineSeries>
+
+                <!-- Третья линия -->
+                <lcw:LineSeries x:Name="SeriesData3" Title="Ценовая категория 3" StrokeThickness="3" Stroke="Green" PointGeometrySize="0"
+                                Values="3,85,3,8,100,5,125,3">
+                    <lcw:LineSeries.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                            <GradientStop Color="#fca311" Offset="1.0" />
+                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                        </LinearGradientBrush>
+                    </lcw:LineSeries.Fill>
+                </lcw:LineSeries>
+                
+                <!-- Третья линия -->
+                <lcw:LineSeries x:Name="SeriesData4" Title="Ценовая категория 4" StrokeThickness="3" Stroke="Green" PointGeometrySize="0"
+                                Values="3,85,3,8,100,5,125,3">
+                    <lcw:LineSeries.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                            <GradientStop Color="#8338ec" Offset="1.0" />
+                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                        </LinearGradientBrush>
+                    </lcw:LineSeries.Fill>
+                </lcw:LineSeries>
+                
+                <!-- Третья линия -->
+                <lcw:LineSeries x:Name="SeriesData5" Title="Ценовая категория 5" StrokeThickness="3" Stroke="Green" PointGeometrySize="0"
+                                Values="3,85,3,8,100,5,125,3">
+                    <lcw:LineSeries.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                            <GradientStop Color="#e36414" Offset="1.0" />
+                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                        </LinearGradientBrush>
+                    </lcw:LineSeries.Fill>
+                </lcw:LineSeries>
+                
+                <!-- Третья линия -->
+                <lcw:LineSeries x:Name="SeriesData6" Title="Ценовая категория 6" StrokeThickness="3" Stroke="Green" PointGeometrySize="0"
+                                Values="3,85,3,8,100,5,125,3">
+                    <lcw:LineSeries.Fill>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                            <GradientStop Color="#8ac926" Offset="1.0" />
+                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                        </LinearGradientBrush>
+                    </lcw:LineSeries.Fill>
+                </lcw:LineSeries>
+
+            </lcw:CartesianChart.Series>
+        </lcw:CartesianChart>
+        </Border>
+
+        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10 10 0 10">
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                <Border
+                    CornerRadius="2"
+                    Width="10"
+                    Height="10"
+                    Background="#2E3092">
+                </Border>
+            
+                <TextBlock
+                    Margin="5 0 0 0"
+                    Text="Ценовая категория 1">
+                </TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                <Border
+                    CornerRadius="2"
+                    Width="10"
+                    Height="10"
+                    Background="#f72585">
+                </Border>
+            
+                <TextBlock
+                    Margin="5 0 0 0"
+                    Text="Ценовая категория 2">
+                </TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                <Border
+                    CornerRadius="2"
+                    Width="10"
+                    Height="10"
+                    Background="#fca311">
+                </Border>
+            
+                <TextBlock
+                    Margin="5 0 0 0"
+                    Text="Ценовая категория 3">
+                </TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                <Border
+                    CornerRadius="2"
+                    Width="10"
+                    Height="10"
+                    Background="#8338ec">
+                </Border>
+            
+                <TextBlock
+                    Margin="5 0 0 0"
+                    Text="Ценовая категория 4">
+                </TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                <Border
+                    CornerRadius="2"
+                    Width="10"
+                    Height="10"
+                    Background="#e36414">
+                </Border>
+            
+                <TextBlock
+                    Margin="5 0 0 0"
+                    Text="Ценовая категория 5">
+                </TextBlock>
+            </StackPanel>
+            
+            <StackPanel Orientation="Horizontal" Margin="0 0 10 0">
+                <Border
+                    CornerRadius="2"
+                    Width="10"
+                    Height="10"
+                    Background="#8ac926">
+                </Border>
+            
+                <TextBlock
+                    Margin="5 0 0 0"
+                    Text="Ценовая категория 6">
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+
 </UserControl>

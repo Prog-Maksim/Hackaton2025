@@ -60,8 +60,7 @@ public partial class MainWindow : Window
         else
             tariff = energyCost.Item3;
         
-        LoadPriceCategoryOne(result, totalPower, cost);
-        
+        LoadPriceCategoryOne(totalPower, cost);
         
         Plot1.AxisX.Labels = result
             .Select(r => DateTime.Parse(r.Data).ToString("dd.MM.yyyy"))
@@ -70,7 +69,7 @@ public partial class MainWindow : Window
         CalculatePower();
     }
 
-    private void LoadPriceCategoryOne(List<Root> result, double totalPower, double cost)
+    private void LoadPriceCategoryOne(double totalPower, double cost)
     {
         cost += CostCalculator.PriceCategory1(totalPower, tariff); 
         cost = Math.Round(cost, 2);
@@ -115,15 +114,15 @@ public partial class MainWindow : Window
             {
                 dailySum += result[i, j];
             }
-            series.Add(dailySum);
+            series.Add(Math.Round(dailySum, 2));
         }
-        Plot1.SeriesData.Values = new ChartValues<double>(series);
+        Plot1.SeriesData1.Values = new ChartValues<double>(series);
     }
 
     private void CalculatePower()
     {
         List<double> series = _datas.Select(r => Math.Round(r.EnergyByHours.Sum(), 2)).ToList();
-        Plot1.SeriesData.Values = new ChartValues<double>(series);
+        Plot1.SeriesData1.Values = new ChartValues<double>(series);
     }
     
     public void AddPriceData(List<PriceData> priceData)
@@ -148,9 +147,15 @@ public partial class MainWindow : Window
             int selectedIndex = ComboBoxMain.SelectedIndex;
 
             if (selectedIndex == 0)
+            {
+                Title.Text = "Статистика потребления электроэнергии";
                 CalculatePower();
+            }
             else if (selectedIndex == 1)
+            {
+                Title.Text = "Статистика стоимости за электроэнергию";
                 CalculatePrice();
+            }
         }
         catch (Exception exception)
         {
