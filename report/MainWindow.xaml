@@ -65,6 +65,7 @@
         <Grid Grid.Row="2">
             
             <TextBlock
+                x:Name="Title"
                 Text="Статистика потребления электроэнергии"
                 Foreground="Black"
                 FontSize="15"

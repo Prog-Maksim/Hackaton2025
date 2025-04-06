@@ -16,9 +16,7 @@ public partial class AddFile : Window
 
     private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
     {
-        if (fileNameEnergy != null)
-            _ = Start(fileNameEnergy);
-        else if (fileNameEnergy == null)
+        if (fileNameEnergy == null)
         {
             MessageBox.Show("Необходимо выбрать файл с почасовым потреблением энергии", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Information);
             fileNameEnergy = OpenDialogMenu("Выберите файл с потреблением энергии");
@@ -29,7 +27,11 @@ public partial class AddFile : Window
             fileNameConfigure = OpenDialogMenu("Выберите файл конфигурации");
         }
         else
+        {
+            MainButton.IsEnabled = false;
+            MainButton.Content = "Загрузка...";
             _ = Start(fileNameConfigure);
+        }
     }
 
     private async Task Start(string filePath)
@@ -39,21 +41,26 @@ public partial class AddFile : Window
             var result = await GetDataRequest.GetDataRequestMethod(filePath);
 
             double powerCost = 0;
-            double.TryParse(TextBox1.Text, out powerCost);
+            // double.TryParse(TextBox1.Text, out powerCost);
 
             double energyCost1 = 0, energyCost2 = 0, energyCost3 = 0;
-        
-            double.TryParse(TextBox2.Text, out powerCost);
-            double.TryParse(TextBox3.Text, out powerCost);
-            double.TryParse(TextBox4.Text, out powerCost);
-        
+
+            // Console.WriteLine(double.TryParse(TextBox2.Text, out energyCost1));
+            // Console.WriteLine(double.TryParse(TextBox3.Text, out energyCost2));
+            // Console.WriteLine(double.TryParse(TextBox4.Text, out energyCost3));
+
             MainWindow mainWindow = new MainWindow(result, powerCost, (energyCost1, energyCost2, energyCost3));
             mainWindow.Show();
             Close();
         }
         catch (Exception e)
         {
-            MessageBox.Show(e.Message + "\n\n" + e.StackTrace);
+            MessageBox.Show(e.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+        finally
+        {
+            MainButton.IsEnabled = true;
+            MainButton.Content = "Произвести расчет";
         }
     }
 
